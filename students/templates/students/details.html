@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Details</title>
+</head>
+<body>
+    <h1>Student Details</h1>
+    <p>Name: {{ student.student_name }}</p>
+    <p>Age: {{ student.student_age }}</p>
+    <p>Email: {{ student.student_email }}</p>
+    <p>Address: {{ student.student_address }}</p>
+    <form action="{% url 'details' student.id %}" method="POST">
+        {% csrf_token %}
+        <label>Course:</label>
+        <select name="course">
+            {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.course_name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Add course" />
+    </form>
+</body>
+</html>
